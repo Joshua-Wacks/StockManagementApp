@@ -19,7 +19,7 @@ namespace ModelsNS
             this.dateOccured = dateOccured;
         }
 
-        public ItemLedger(int itemID, int ledgerTypeID, int quantity, System.DateTime dateOccured)
+        public ItemLedger( int ledgerTypeID, int itemID, int quantity, System.DateTime dateOccured)
         {
             this.itemID = itemID;
             this.ledgerTypeID = ledgerTypeID;

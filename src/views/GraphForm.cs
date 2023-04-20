@@ -8,9 +8,23 @@ namespace StockManagementApp
     public partial class GraphForm : Form
     {
 
-        private void showGraph()
+        private void showGraph(String items,String action,String time)
         {
             Connection conn = new Connection();
+
+/*            switch (items)
+            {
+                case "All Items":
+
+                    break;
+                default:
+                    Console.WriteLine();
+                    break;
+
+*//*By Brand
+By Category*//*
+            }*/
+          //  if (items.Equals())
 
             List<ItemLedger>  itemLedgers = conn.getAllItemLedgers();
 
@@ -28,10 +42,10 @@ namespace StockManagementApp
             for(int i =0 ; i < itemLedgers.Count;i++)
             {
                 ItemLedger ledger = itemLedgers[i];
-                if (ledger.getLedgerTypeID() == (int)ELedgerType.Sale)
+                if (ledger.ledgerTypeID == (int)ELedgerType.Sale)
                 {
-                    int month = ledger.getDateOccured().Month - 1;
-                    dataY[month] = dataY[month] + ledger.getQuantity();
+                    int month = ledger.dateOccured.Month - 1;
+                    dataY[month] = dataY[month] + ledger.quantity;
 
                 }
             }
@@ -71,23 +85,15 @@ namespace StockManagementApp
 
         }
 
-        private Boolean checkBoxes()
-        {
-            if(comboBoxOverall.SelectedText == "")
-            {
-                MessageBox.Show("Please Ensure all comboboxes have a value");
-                return false;
-            }
-            return true;
-        }
-
         private void viewGraphBtn_Click(object sender, EventArgs e)
         {
-            showGraph();
 
-      /*      if (checkBoxes()){
-            }*/
-            
+            String item = comboBoxOverall.SelectedItem.ToString();
+            String action = comboBoxLedgerType.SelectedItem.ToString();
+            String time = comboBoxTime.SelectedItem.ToString();
+
+            showGraph(item,action,time);
+
         }
 
     }

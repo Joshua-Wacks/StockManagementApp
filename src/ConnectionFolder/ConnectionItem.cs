@@ -209,10 +209,10 @@ namespace ConnectionNS
                 conn.Open();
 
                 SqlCommand command = new SqlCommand("INSERT INTO Item VALUES(@p_name,@p_categoryID,@p_brandId,@p_initialStock);", conn);
-                command.Parameters.Add(new SqlParameter("p_name", item.getName()));
-                command.Parameters.Add(new SqlParameter("p_categoryID", item.getCategoryID()));
-                command.Parameters.Add(new SqlParameter("p_brandId", item.getBrandID()));
-                command.Parameters.Add(new SqlParameter("p_initialStock", item.getInitialStock()));
+                command.Parameters.Add(new SqlParameter("p_name", item.name));
+                command.Parameters.Add(new SqlParameter("p_categoryID", item.categoryID));
+                command.Parameters.Add(new SqlParameter("p_brandId", item.brandId));
+                command.Parameters.Add(new SqlParameter("p_initialStock", item.initialStock));
 
                 try
                 {

@@ -263,10 +263,10 @@ namespace ConnectionNS
                 conn.Open();
 
                 SqlCommand command = new SqlCommand("INSERT INTO ItemLedger VALUES(@p_ledgerTypeID,@p_itemID,@p_quantity,@p_dateOccured);", conn);
-                command.Parameters.Add(new SqlParameter("p_itemID", ledgerItem.getItemID()));
-                command.Parameters.Add(new SqlParameter("p_ledgerTypeID", ledgerItem.getLedgerTypeID()));
-                command.Parameters.Add(new SqlParameter("p_quantity", ledgerItem.getQuantity()));
-                command.Parameters.Add(new SqlParameter("p_dateOccured", ledgerItem.getDateOccured().ToString("yyyy-MM-dd HH:mm:ss")));
+                command.Parameters.Add(new SqlParameter("p_itemID", ledgerItem.itemID));
+                command.Parameters.Add(new SqlParameter("p_ledgerTypeID", ledgerItem.ledgerTypeID));
+                command.Parameters.Add(new SqlParameter("p_quantity", ledgerItem.quantity));
+                command.Parameters.Add(new SqlParameter("p_dateOccured", ledgerItem.dateOccured.ToString("yyyy-MM-dd HH:mm:ss")));
                 Console.WriteLine(command.Parameters);
                 //command.Parameters.Add("@Date", SqlDbType.Date).Value = ledgerItem.getDateOccured();
 
