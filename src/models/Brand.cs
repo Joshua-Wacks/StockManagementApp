@@ -2,8 +2,8 @@ namespace ModelsNS
 {
     public class Brand
     {
-        public int brandId;
-        public string name;
+        public int brandId { get; set; }
+        public string name { get; set; }
 
         public Brand(int brandID,string name) { 
             this.brandId = brandID;

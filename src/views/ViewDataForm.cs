@@ -24,15 +24,17 @@ namespace StockManagementApp
 
         private void btnBrands_Click(object sender, EventArgs e)
         {
+
             List<Brand> brands = new List<Brand>();
             brands = connection.getAllBrands();
             BindingList<Brand> bindingBrands = new BindingList<Brand>(brands);
-            dgvTables.DataSource = bindingBrands;
-           // dgvTables.Refresh();
+            dgvTables.DataSource = brands;
+            //dgvTables.Refresh();
         }
 
         private void btnItems_Click(object sender, EventArgs e)
         {
+            Console.WriteLine("Test");
             List<Item> items = new List<Item>();
             items = connection.getAllItems();
             dgvTables.DataSource = items;

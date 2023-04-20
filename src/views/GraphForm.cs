@@ -24,7 +24,6 @@ namespace StockManagementApp
                 xPositions[i] = i;
                 dataY[i] = 0;
             }
-            int count = 0;
 
             foreach (ItemLedger ledger in itemLedgers)
             {

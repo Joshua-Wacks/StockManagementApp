@@ -179,6 +179,7 @@
             // 
             // dgvTables
             // 
+            this.dgvTables.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvTables.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTables.Location = new System.Drawing.Point(18, 15);
             this.dgvTables.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
