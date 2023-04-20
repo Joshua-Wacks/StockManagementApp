@@ -21,7 +21,7 @@ namespace ConnectionNS
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand("SELECT * FROM Brand", conn);
+                SqlCommand command = new SqlCommand("SELECT * FROM Brand ORDER BY BrandID", conn);
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())

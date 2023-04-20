@@ -39,7 +39,7 @@ namespace StockManagementApp
 
             if (items.Equals("All Items"))
             {
-                if(time.Equals("Monthly"))
+                if (time.Equals("Monthly"))
                 {
                     string[] dataX = { "Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Novem", "Dec" };
                     double[] xPositions = new double[dataX.Length];
@@ -68,7 +68,7 @@ namespace StockManagementApp
                 }
                 else
                 {
-                    double[] dataX = { 2019,2020,2021,2022,2023 };
+                    double[] dataX = { 2019, 2020, 2021, 2022, 2023 };
                     double[] dataY = new double[dataX.Length];
                     for (int i = 0; i < dataY.Length; i++)
                     {
@@ -80,7 +80,7 @@ namespace StockManagementApp
                         if (ledger.ledgerTypeID == actionCheck)
                         {
                             int year = ledger.dateOccured.Year - firstYearInDb;
-                            
+
                             dataY[year] = dataY[year] + ledger.quantity;
                         }
                     }
@@ -92,26 +92,143 @@ namespace StockManagementApp
 
                 }
             }
-            else if(items.Equals("By Brand"))
+            else if (items.Equals("By Brand"))
             {
+                string msg = "Please enter a brandID below\n\nName : BrandID\n__________________________________\n";
+                List<Brand> brands = conn.getAllBrands();
+                foreach (Brand brand in brands)
+                {
+                    msg = msg + brand.name + " : " + brand.brandId + "\n";
+                }
+                int result = Convert.ToInt32(Microsoft.VisualBasic.Interaction.InputBox(msg, "brandID", "1"));
+                if (result < 0 || result > brands.Count)
+                {
+                    MessageBox.Show("Please enter a valid brandID");
+                    return;
+                }
+                if (time.Equals("Monthly"))
+                {
+                    string[] dataX = { "Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Novem", "Dec" };
+                    double[] xPositions = new double[dataX.Length];
+                    double[] dataY = new double [dataX.Length];
 
-                int numBrands = conn.getAllBrands().Count;
+
+                    for (int i = 0; i < dataX.Length; i++)
+                    {
+                        xPositions[i] = i;
+                        dataY[i] = 0;
+                    }
+
+                    for (int i = 0; i < itemLedgers.Count; i++)
+                    {
+                        ItemLedger ledger = itemLedgers[i];
+                        if (ledger.ledgerTypeID == actionCheck && result == conn.getItem(ledger.itemID).brandId)
+                        {
+                            int month = ledger.dateOccured.Month - 1;
+                            dataY[month] = dataY[ month] + ledger.quantity;
+
+                        }
+                    }
+
+                    formsPlot.Plot.AddScatter(xPositions, dataY);
+
+                    formsPlot.Plot.XAxis.ManualTickPositions(xPositions, dataX);
+
+                    formsPlot.Refresh();
+                }
+                else
+                {
+                    double[] dataX = { 2019, 2020, 2021, 2022, 2023 };
+                    double[] dataY = new double[dataX.Length];
+                    for (int i = 0; i < dataY.Length; i++)
+                    {
+                        dataY[i] = 0;
+                    }
+                    for (int i = 0; i < itemLedgers.Count; i++)
+                    {
+                        ItemLedger ledger = itemLedgers[i];
+                        if (ledger.ledgerTypeID == actionCheck && result == conn.getItem(ledger.itemID).brandId)
+                        {
+                            int year = ledger.dateOccured.Year - firstYearInDb;
+
+                            dataY[year] = dataY[year] + ledger.quantity;
+                        }
+                    }
+
+                    formsPlot.Plot.AddScatter(dataX, dataY);
+
+                    formsPlot.Refresh();
+                }
+            }
+            else
+            {
+                string msg = "Please enter a CategoryID below\n\nName : CategoryID\n__________________________________\n";
+                List<Category> categories = conn.getAllCategories();
+                foreach(Category category in categories)
+                {
+                    msg = msg + category.name + "\t:\t" + category.categoryID + "\n";
+                }
+                int result = Convert.ToInt32(Microsoft.VisualBasic.Interaction.InputBox(msg, "CategoryID", "1"));
+                if(result < 0 || result > categories.Count)
+                {
+                    MessageBox.Show("Please enter a valid CategoryID");
+                    return;
+                }
 
                 if (time.Equals("Monthly"))
                 {
                     string[] dataX = { "Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Novem", "Dec" };
                     double[] xPositions = new double[dataX.Length];
-                    double[,] dataY = new double[numBrands,dataX.Length];
+                    double[] dataY = new double[dataX.Length];
 
-                    for (int y = 0; y < numBrands; y++)
+
+                    for (int i = 0; i < dataX.Length; i++)
                     {
-                        for (int i = 0; i < dataY.Length; i++)
+                        xPositions[i] = i;
+                        dataY[i] = 0;
+                    }
+
+                    for (int i = 0; i < itemLedgers.Count; i++)
+                    {
+                        ItemLedger ledger = itemLedgers[i];
+                        if (ledger.ledgerTypeID == actionCheck && result == conn.getItem(ledger.itemID).categoryID)
                         {
-                            xPositions[i] = i;
-                            dataY[y,i] = 0;
+                            int month = ledger.dateOccured.Month - 1;
+                            dataY[month] = dataY[month] + ledger.quantity;
+
                         }
                     }
+
+                    formsPlot.Plot.AddScatter(xPositions, dataY);
+
+                    formsPlot.Plot.XAxis.ManualTickPositions(xPositions, dataX);
+
+                    formsPlot.Refresh();
                 }
+                else
+                {
+                    double[] dataX = { 2019, 2020, 2021, 2022, 2023 };
+                    double[] dataY = new double[dataX.Length];
+                    for (int i = 0; i < dataY.Length; i++)
+                    {
+                        dataY[i] = 0;
+                    }
+                    for (int i = 0; i < itemLedgers.Count; i++)
+                    {
+                        ItemLedger ledger = itemLedgers[i];
+                        if (ledger.ledgerTypeID == actionCheck && result == conn.getItem(ledger.itemID).categoryID)
+                        {
+                            int year = ledger.dateOccured.Year - firstYearInDb;
+
+                            dataY[year] = dataY[year] + ledger.quantity;
+                        }
+                    }
+
+                    formsPlot.Plot.AddScatter(dataX, dataY);
+
+                    formsPlot.Refresh();
+                }
+            }
 
 
 
