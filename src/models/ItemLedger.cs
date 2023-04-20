@@ -10,7 +10,7 @@ namespace ModelsNS
         private int quantity;
         private System.DateTime dateOccured;
 
-        public ItemLedger(int itemID, int ledgerID, int ledgerTypeID, int quantity, System.DateTime dateOccured)
+        public ItemLedger( int ledgerID, int ledgerTypeID, int itemID, int quantity, System.DateTime dateOccured)
         {
             this.itemID = itemID;
             this.ledgerID = ledgerID;

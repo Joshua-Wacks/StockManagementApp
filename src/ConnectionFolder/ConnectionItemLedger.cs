@@ -21,18 +21,22 @@ namespace ConnectionNS
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand("SELECT * FROM ItemLedger", conn);
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
+                
+                using (SqlCommand command = new SqlCommand("SELECT * FROM ItemLedger", conn))
+                { 
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        ItemLedger itemLedger = new ItemLedger(Convert.ToInt32(reader[0]),
-                            Convert.ToInt32(reader[1]),
-                            Convert.ToInt32(reader[2]),
-                            Convert.ToInt32(reader[3]),
-                            Convert.ToDateTime(reader[4]));
+                        while (reader.Read())
+                        {
+                            ItemLedger itemLedger = new ItemLedger(Convert.ToInt32(reader[0]),
+                                Convert.ToInt32(reader[1]),
+                                Convert.ToInt32(reader[2]),
+                                Convert.ToInt32(reader[3]),
+                                Convert.ToDateTime(reader[4]));
 
-                        itemLedgerList.Add(itemLedger);
+                            itemLedgerList.Add(itemLedger);
+                        }
+                        reader.Close();
                     }
                 }
             }

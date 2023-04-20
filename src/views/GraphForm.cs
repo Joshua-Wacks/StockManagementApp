@@ -13,6 +13,7 @@ namespace StockManagementApp
             Connection conn = new Connection();
 
             List<ItemLedger>  itemLedgers = conn.getAllItemLedgers();
+
             MessageBox.Show(itemLedgers.Count + "");
 
             String[] dataX = { "Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Novem", "Dec" };
@@ -24,8 +25,19 @@ namespace StockManagementApp
                 xPositions[i] = i;
                 dataY[i] = 0;
             }
+            for(int i =0 ; i < itemLedgers.Count;i++)
+            {
+                ItemLedger ledger = itemLedgers[i];
+                if (ledger.getLedgerTypeID() == (int)ELedgerType.Sale)
+                {
+                    int month = ledger.getDateOccured().Month - 1;
+                    dataY[month] = dataY[month] + ledger.getQuantity();
 
-            foreach (ItemLedger ledger in itemLedgers)
+                }
+            }
+
+
+/*            foreach (ItemLedger ledger in itemLedgers)
             {
 
                 if (ledger.getLedgerTypeID() == (int)ELedgerType.Sale)
@@ -36,7 +48,7 @@ namespace StockManagementApp
 
                 }
 
-            }
+            }*/
 
 
             formsPlot.Plot.AddScatter(xPositions, dataY);
