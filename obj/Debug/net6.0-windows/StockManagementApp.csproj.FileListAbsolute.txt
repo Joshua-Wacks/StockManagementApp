@@ -22,3 +22,6 @@ C:\Users\bbdnet2493\Documents\grad_projects\Level_ups\C#_levl_up\Project\StockMa
 C:\Users\bbdnet2493\Documents\grad_projects\Level_ups\C#_levl_up\Project\StockManagementApp\StockManagementApp\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\bbdnet2493\Documents\grad_projects\Level_ups\C#_levl_up\Project\StockManagementApp\StockManagementApp\obj\Debug\net6.0-windows\StockManagementApp.csproj.CopyComplete
 C:\Users\bbdnet2493\Documents\grad_projects\Level_ups\C#_levl_up\Project\StockManagementApp\StockManagementApp\obj\Debug\net6.0-windows\StockManagementApp.GraphForm.resources
+C:\Users\bbdnet2493\Documents\grad_projects\Level_ups\C#_levl_up\Project\StockManagementApp\StockManagementApp\bin\Debug\net6.0-windows\ScottPlot.dll
+C:\Users\bbdnet2493\Documents\grad_projects\Level_ups\C#_levl_up\Project\StockManagementApp\StockManagementApp\bin\Debug\net6.0-windows\ScottPlot.WinForms.dll
+C:\Users\bbdnet2493\Documents\grad_projects\Level_ups\C#_levl_up\Project\StockManagementApp\StockManagementApp\obj\Debug\net6.0-windows\StockManagementApp.ViewDataForm.resources

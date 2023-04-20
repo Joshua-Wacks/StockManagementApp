@@ -1,61 +1,82 @@
 using ConnectionNS;
 using ModelsNS;
+using ScottPlot;
+using StockManagementApp.src.models;
 
 namespace StockManagementApp
 {
     public partial class GraphForm : Form
     {
-        private void DynamicButton_Click(object sender, EventArgs e)
+
+        private void showGraph()
         {
-            MessageBox.Show("Dynamic button is clicked");
+            Connection conn = new Connection();
+
+            List<ItemLedger>  itemLedgers = conn.getAllItemLedgers();
+            MessageBox.Show(itemLedgers.Count + "");
+
+            String[] dataX = { "Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Novem", "Dec" };
+            double[] xPositions = new double[12];
+            double[] dataY = new double[12];
+
+            for (int i = 0; i < 12; i++)
+            {
+                xPositions[i] = i;
+                dataY[i] = 0;
+            }
+            int count = 0;
+
+            foreach (ItemLedger ledger in itemLedgers)
+            {
+
+                if (ledger.getLedgerTypeID() == (int)ELedgerType.Sale)
+                {
+                    int month = ledger.getDateOccured().Month-1;
+                    dataY[month] = dataY[month]+  ledger.getQuantity();
+                    
+
+                }
+
+            }
+
+
+            formsPlot.Plot.AddScatter(xPositions, dataY);
+            formsPlot.Plot.XAxis.ManualTickPositions(xPositions, dataX);
+
+            formsPlot.Refresh();
+
         }
-        private void CreateDynamicButton()
-        {
-
-            // Create a Button object  
-            Button dynamicButton = new Button();
-
-            // Set Button properties  
-            dynamicButton.Height = 40;
-            dynamicButton.Width = 300;
-            dynamicButton.BackColor = Color.Red;
-            dynamicButton.ForeColor = Color.Blue;
-            dynamicButton.Location = new Point(20, 150);
-            dynamicButton.Text = "I am Dynamic Button";
-            dynamicButton.Name = "DynamicButton";
-            dynamicButton.Font = new Font("Georgia", 16);
-
-            // Add a Button Click Event handler  
-            dynamicButton.Click += new EventHandler(DynamicButton_Click);
-
-            // Add Button to the Form. Placement of the Button  
-            // will be based on the Location and Size of button  
-            Controls.Add(dynamicButton);
-        }
-        /// <summary>  
-        /// Button click event handler  
-        /// </summary>  
-
-        /// <param name="sender"></param>  
-        /// <param name="e"></param>  
-
-        
 
         public GraphForm()
         {
             InitializeComponent();
-            CreateDynamicButton();
+            comboBoxOverall.SelectedItem = comboBoxOverall.Items[0].ToString();
+            comboBoxLedgerType.SelectedItem = comboBoxLedgerType.Items[0].ToString();
+            comboBoxTime.SelectedItem = comboBoxTime.Items[0].ToString();
+
+
+            formsPlot.Plot.Style(Style.Black);
+            formsPlot.Refresh();
+
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private Boolean checkBoxes()
         {
-            Connection connnection = new Connection();
-            List<Item> list = connnection.getAllItems();
-            foreach (Item item in list) { 
-                Console.WriteLine(item.getName());
+            if(comboBoxOverall.SelectedText == "")
+            {
+                MessageBox.Show("Please Ensure all comboboxes have a value");
+                return false;
             }
-            dbLabel.Text = (list[0].getName());
+            return true;
+        }
 
+        private void viewGraphBtn_Click(object sender, EventArgs e)
+        {
+            showGraph();
+
+      /*      if (checkBoxes()){
+            }*/
+            
         }
 
     }
