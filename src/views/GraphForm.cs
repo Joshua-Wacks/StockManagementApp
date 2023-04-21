@@ -63,6 +63,8 @@ namespace StockManagementApp
 
                     formsPlot.Plot.AddScatter(xPositions, dataY);
                     formsPlot.Plot.XAxis.ManualTickPositions(xPositions, dataX);
+                    
+                    //string.Format("{0:D}  {1,6:D}", 634, 868); // result: 634     868
 
                     formsPlot.Refresh();
                 }
@@ -100,7 +102,12 @@ namespace StockManagementApp
                 {
                     msg = msg + brand.name + " : " + brand.brandId + "\n";
                 }
-                int result = Convert.ToInt32(Microsoft.VisualBasic.Interaction.InputBox(msg, "brandID", "1"));
+                String resultStr = Microsoft.VisualBasic.Interaction.InputBox(msg, "brandID", "1");
+                if(!int.TryParse(resultStr, out int result))
+                {
+                    MessageBox.Show("Please enter a valid brandID");
+                    return;
+                }
                 if (result < 0 || result > brands.Count)
                 {
                     MessageBox.Show("Please enter a valid brandID");
@@ -168,8 +175,13 @@ namespace StockManagementApp
                 {
                     msg = msg + category.name + "\t:\t" + category.categoryID + "\n";
                 }
-                int result = Convert.ToInt32(Microsoft.VisualBasic.Interaction.InputBox(msg, "CategoryID", "1"));
-                if(result < 0 || result > categories.Count)
+                String resultStr = Microsoft.VisualBasic.Interaction.InputBox(msg, "CategoryID", "1");
+                if (!int.TryParse(resultStr, out int result))
+                {
+                    MessageBox.Show("Please enter a valid CategoryID");
+                    return;
+                }
+                if (result < 0 || result > categories.Count)
                 {
                     MessageBox.Show("Please enter a valid CategoryID");
                     return;
@@ -262,5 +274,9 @@ namespace StockManagementApp
 
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
