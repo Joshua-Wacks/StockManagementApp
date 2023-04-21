@@ -3,16 +3,10 @@ using System.Data;
 using System.Data.SqlClient;
 using ModelsNS;
 
-//get
-//set
-//insert
-//delete
-
 namespace ConnectionNS
 {
     public partial class Connection
     {
-                //*******************************************************LedgerType START************************************************
 
         public List<LedgerType> getAllLedgerTypes()
         {
@@ -182,7 +176,5 @@ namespace ConnectionNS
 
             }
         }
-
-        //*******************************************************LedgerType END************************************************
     }
 }

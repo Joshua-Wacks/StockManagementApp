@@ -3,16 +3,10 @@ using System.Data;
 using System.Data.SqlClient;
 using ModelsNS;
 
-//get
-//set
-//insert
-//delete
-
 namespace ConnectionNS
 {
     public partial class Connection
     {
-                //*******************************************************ItemLedger START************************************************
         
         public List<ItemLedger> getAllItemLedgers()
         {
@@ -150,7 +144,6 @@ namespace ConnectionNS
                 conn.Open();
 
                 SqlCommand command = new SqlCommand("SELECT * FROM ItemLedger WHERE DateOccured = CONVERT(Date, [DateOccured], 102)", conn);
-                //command.Parameters.Add(new SqlParameter("p_quantity", dateOccured));
                 command.Parameters.Add("@Date", SqlDbType.Date).Value = dateOccured;
 
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -183,7 +176,6 @@ namespace ConnectionNS
                 conn.Open();
 
                 SqlCommand command = new SqlCommand("SELECT * FROM ItemLedger WHERE DateOccured >= CONVERT(Date, [DateOccured], 102)", conn);
-                //command.Parameters.Add(new SqlParameter("p_quantity", dateOccured));
                 command.Parameters.Add("@Date", SqlDbType.Date).Value = dateOccured;
 
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -215,7 +207,6 @@ namespace ConnectionNS
                 conn.Open();
 
                 SqlCommand command = new SqlCommand("SELECT * FROM ItemLedger WHERE DateOccured <= CONVERT(Date, [DateOccured], 102)", conn);
-                //command.Parameters.Add(new SqlParameter("p_quantity", dateOccured));
                 command.Parameters.Add("@Date", SqlDbType.Date).Value = dateOccured;
 
                 using (SqlDataReader reader = command.ExecuteReader())

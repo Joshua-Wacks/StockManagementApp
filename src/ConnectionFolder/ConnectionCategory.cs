@@ -3,16 +3,10 @@ using System.Data;
 using System.Data.SqlClient;
 using ModelsNS;
 
-//get
-//set
-//insert
-//delete
-
 namespace ConnectionNS
 {
     public partial class Connection
     {
-          //*******************************************************CATEGORY START****************************************************
 
         public List<Category> getAllCategories()
         {
@@ -182,7 +176,5 @@ namespace ConnectionNS
 
             }
         }
-
-        //*******************************************************CATEGORY END****************************************************
     }
 }
