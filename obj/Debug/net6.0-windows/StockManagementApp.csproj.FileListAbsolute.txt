@@ -25,3 +25,4 @@ C:\Users\bbdnet2493\Documents\grad_projects\Level_ups\C#_levl_up\Project\StockMa
 C:\Users\bbdnet2493\Documents\grad_projects\Level_ups\C#_levl_up\Project\StockManagementApp\StockManagementApp\bin\Debug\net6.0-windows\ScottPlot.dll
 C:\Users\bbdnet2493\Documents\grad_projects\Level_ups\C#_levl_up\Project\StockManagementApp\StockManagementApp\bin\Debug\net6.0-windows\ScottPlot.WinForms.dll
 C:\Users\bbdnet2493\Documents\grad_projects\Level_ups\C#_levl_up\Project\StockManagementApp\StockManagementApp\obj\Debug\net6.0-windows\StockManagementApp.ViewDataForm.resources
+C:\Users\bbdnet2493\Documents\grad_projects\Level_ups\C#_levl_up\Project\StockManagementApp\StockManagementApp\obj\Debug\net6.0-windows\StockManagementApp.MenuForm.resources
