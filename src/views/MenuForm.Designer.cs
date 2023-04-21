@@ -53,6 +53,7 @@
             this.btnViewStock.TabIndex = 1;
             this.btnViewStock.Text = "View Stock";
             this.btnViewStock.UseVisualStyleBackColor = true;
+            this.btnViewStock.Click += new System.EventHandler(this.btnViewStock_Click);
             // 
             // btnUpdateStock
             // 
@@ -73,6 +74,8 @@
             this.btnStats.TabIndex = 3;
             this.btnStats.Text = "Analyse Stock";
             this.btnStats.UseVisualStyleBackColor = true;
+            this.btnStats.Click += new System.EventHandler(this.btnStats_Click);
+
             // 
             // MenuForm
             // 
